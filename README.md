@@ -1,6 +1,6 @@
 # Backdate Labeller
 
-A simple labeller for backdating posts.
+A simple ATProto labeller for labelling backdated Bluesky posts.
 
 ## Running it
 
