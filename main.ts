@@ -28,6 +28,8 @@ server.start(14831, (error) => {
 const jetstream = new Jetstream({
   wantedCollections: ["app.bsky.feed.post"],
   // we DO NOT want to use a cursor, since we only want live posts
+  // if you're forking this to make your own labeller, check out
+  // https://github.com/mozzius/kiki-bouba-labeller/blob/main/src/main.ts
 });
 
 jetstream.on("error", (err) => console.error(err));
