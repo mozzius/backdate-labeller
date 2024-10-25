@@ -30,6 +30,7 @@ const jetstream = new Jetstream({
   // we DO NOT want to use a cursor, since we only want live posts
   // if you're forking this to make your own labeller, check out
   // https://github.com/mozzius/kiki-bouba-labeller/blob/main/src/main.ts
+  endpoint: "wss://jetstream2.us-east.bsky.network/subscribe",
 });
 
 jetstream.on("error", (err) => console.error(err));
