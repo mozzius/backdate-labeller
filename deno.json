@@ -1,0 +1,10 @@
+{
+  "tasks": {
+    "dev": "deno run --allow-all --watch main.ts"
+  },
+  "imports": {
+    "@skyware/jetstream": "npm:@skyware/jetstream@^0.2.0",
+    "@skyware/labeler": "npm:@skyware/labeler@^0.1.11",
+    "@std/dotenv": "jsr:@std/dotenv@^0.225.2"
+  }
+}
