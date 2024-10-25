@@ -25,33 +25,12 @@ server.start(14831, (error) => {
   }
 });
 
-let interval: ReturnType<typeof setInterval>;
-let cursorFile;
-try {
-  cursorFile = Deno.readTextFileSync("cursor.txt");
-} catch { /* it's fine */ }
-
-if (cursorFile) console.log(`Initiate firehose at cursor ${cursorFile}`);
-else console.log("Initiate firehose (no cursor)");
-
 const jetstream = new Jetstream({
   wantedCollections: ["app.bsky.feed.post"],
-  cursor: Number(cursorFile),
-});
-
-jetstream.on("open", () => {
-  interval = setInterval(() => {
-    const cursor = jetstream.cursor;
-    if (cursor) {
-      console.log(`${new Date().toISOString()}: ${cursor}`);
-      Deno.writeTextFile("cursor.txt", cursor.toString());
-    }
-  }, 60000);
+  // we DO NOT want to use a cursor, since we only want live posts
 });
 
 jetstream.on("error", (err) => console.error(err));
-
-jetstream.on("close", () => clearInterval(interval));
 
 jetstream.onCreate("app.bsky.feed.post", (op) => {
   const now = Date.now();
